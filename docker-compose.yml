@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  sku_db01:
+    image: mysql:5.6
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_USER: pdi
+      MYSQL_PASSWORD: pdi
+      MYSQL_DATABASE: Chinook
+      MYSQL_ROOT_PASSWORD: ritesh
+    ports:
+      - "3306:3306"
+
+  sku_db02:
+    image: mysql:5.6
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_USER: pdi
+      MYSQL_PASSWORD: pdi
+      MYSQL_DATABASE: Chinook
+      MYSQL_ROOT_PASSWORD: ritesh
+    ports:
+      - "3307:3306"
+  
+  pdi:
+    image: my_pentaho_image:latest
+    volumes:
+      - ./resources:/home/pentaho/data-integration/resources
